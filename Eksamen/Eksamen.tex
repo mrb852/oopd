@@ -1,0 +1,141 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc} % æøå
+\usepackage[T1]{fontenc} % mere æøå
+\usepackage[danish]{babel} % orddeling
+\usepackage{verbatim} % så man kan skrive ren tekst
+\usepackage{graphicx}
+\begin{document}
+
+\title{OOPD Eksamen - 2014}
+\author{Christian Hohlmann Enevoldsen, MRB852}
+\date{\today}
+\maketitle
+
+\section{Design og overvejelser}
+
+Projektet er delt op i skuespillere, containere, værktøjer og simuleringsklassen, som indeholder main-metoden, og er den klasse som kører programmet.
+Jeg har valgt at Simulation.java indeholder en metode step(int), som kalder miljo.step(). Miljo kalder så step() på alle dets felters actors, hvor de så selv tager beslutningen om hvad der skal ske. 
+\\\\
+Simulatoren har ansvaret for input og output. Miljø har ansvaret for at holde referencer til alle felter, samt at holde kommunikation mellem simulator, skuespillere og felter. Felter(Spots) har ansvaret for at holde styr på skuespillernes position og er derfor en slags container. Skuespillerne er derfor dem som styrer simulationens fremgang, og man kan måske argumenterer imod dette, hvis man fulgte MVC, men da det er kunstig intelligens, har jeg valgt at lade dem implementere deres logik selv.
+\\\\
+Actor : Abstract klasse som er baseklassen for dyr og sten. Den indeholder flag, som bliver tilgivet til de nedarvede klasser, som bliver brugt i hele programmet for let at kunne skelne forskel på skuespillerne. Jeg har valgt ikke at lave et IActor interface, men derimod blot lavet abstraktion direkte i klassen. Det andet ville være mere rigtigt, men jeg har valgt at holde det 
+\\\\
+Mus og ugle nedarver Dyr, og der er skrevet en fokuseret nedarving af radar til hver især. Radaren og klassen ClosestComparator spiller en stor rolle i dyrenes måde at bevæge sig på. ClosestComparator implementer interfacet Comparator, og bliver f.eks. brugt hos Ugle til at finde den tætteste mus. Hos mus, har jeg brugt den til at finde den tætteste sten, og når radaren har fundet en Ugle på vej til at angribe, bliver ClosestComparator brugt til at finde den bedste flugtvej, ved at vende resultatet om, så den får det felt som er længst væk fra uglen. På den måde flygter musen. 
+\\\\
+Det eneste sten gør er at svare ja eller nej, når en mus spørger om beskyttelse inden den bliver spist. 
+I simulator har jeg en klasse inde i klassen, og jeg er klar over at det ikke er så godt, men der findes ikke structs i Java, og det eneste jeg bruger klassen til er at holde styr på antallet af mus, ugler og sten per step.
+
+\section{Skærmdump af miljø efter 10 skridt + tabel }
+
+\includegraphics[scale=0.95]{SSeksamen2.png}\\
+
+Round: 1, Mice: 154, Rocks 10, Owls 2
+
+Round: 2, Mice: 157, Rocks 10, Owls 2
+
+Round: 3, Mice: 158, Rocks 10, Owls 2
+
+Round: 4, Mice: 163, Rocks 10, Owls 2
+
+Round: 5, Mice: 164, Rocks 10, Owls 2
+
+Round: 6, Mice: 168, Rocks 10, Owls 2
+
+Round: 7, Mice: 171, Rocks 10, Owls 2
+
+Round: 8, Mice: 175, Rocks 10, Owls 2
+
+Round: 9, Mice: 182, Rocks 10, Owls 2
+
+Round: 10, Mice: 182, Rocks 10, Owls 2
+
+Round: 11, Mice: 192, Rocks 10, Owls 2
+
+Round: 12, Mice: 199, Rocks 10, Owls 2
+
+Round: 13, Mice: 202, Rocks 10, Owls 2
+
+Round: 14, Mice: 209, Rocks 10, Owls 2
+
+Round: 15, Mice: 215, Rocks 10, Owls 2
+
+Round: 16, Mice: 221, Rocks 10, Owls 2
+
+Round: 17, Mice: 230, Rocks 10, Owls 2
+
+Round: 18, Mice: 236, Rocks 10, Owls 2
+
+Round: 19, Mice: 244, Rocks 10, Owls 2
+
+Round: 20, Mice: 125, Rocks 10, Owls 2
+
+Round: 21, Mice: 124, Rocks 10, Owls 2
+
+Round: 22, Mice: 120, Rocks 10, Owls 2
+
+Round: 23, Mice: 123, Rocks 10, Owls 2
+
+Round: 24, Mice: 118, Rocks 10, Owls 2
+
+Round: 25, Mice: 121, Rocks 10, Owls 2
+
+Round: 26, Mice: 121, Rocks 10, Owls 2
+
+Round: 27, Mice: 123, Rocks 10, Owls 2
+
+Round: 28, Mice: 119, Rocks 10, Owls 2
+
+Round: 29, Mice: 115, Rocks 10, Owls 2
+
+Round: 30, Mice: 116, Rocks 10, Owls 2
+
+Round: 31, Mice: 109, Rocks 10, Owls 2
+
+Round: 32, Mice: 105, Rocks 10, Owls 2
+
+Round: 33, Mice: 105, Rocks 10, Owls 2
+
+Round: 34, Mice: 104, Rocks 10, Owls 2
+
+Round: 35, Mice: 101, Rocks 10, Owls 2
+
+Round: 36, Mice: 94, Rocks 10, Owls 2
+
+Round: 37, Mice: 90, Rocks 10, Owls 2
+
+Round: 38, Mice: 83, Rocks 10, Owls 2
+
+Round: 39, Mice: 75, Rocks 10, Owls 2
+
+Round: 40, Mice: 69, Rocks 10, Owls 2
+
+Round: 41, Mice: 66, Rocks 10, Owls 2
+
+Round: 42, Mice: 67, Rocks 10, Owls 2
+
+Round: 43, Mice: 69, Rocks 10, Owls 2
+
+Round: 44, Mice: 73, Rocks 10, Owls 2
+
+Round: 45, Mice: 71, Rocks 10, Owls 2
+
+Round: 46, Mice: 73, Rocks 10, Owls 2
+
+Round: 47, Mice: 69, Rocks 10, Owls 2
+
+Round: 48, Mice: 71, Rocks 10, Owls 2
+
+Round: 49, Mice: 68, Rocks 10, Owls 2
+
+Round: 50, Mice: 67, Rocks 10, Owls 2
+
+
+\section{Unit tests. }
+
+\includegraphics[scale=0.7]{SSeksamen3.png}\\
+
+Resultatet af unit tests er som forventet. Grunden til at testNoSleep tager så lang tid, skyldes at testen foregår frem til der ikke er flere mus, i en simulation har 150 mus, 10 sten og 2 ugler.
+
+Ud fra tabellen kan det konkluderers at der er blevet genereret 125 mus 20 step efter simuleringens begyndelse. Det kan konkluderes pga. mus dør efter 20 skridt. 20 skridt efter har du 125 mus, så genereret 69 mus, og ud fra dette data kan man groft sige at der i denne simulation er en halvering af mus hvert 20. skridt. Groft sagt. Som forventet er der ingen ændring hos ugler og sten.
+
+\end{document}

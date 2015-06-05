@@ -1,0 +1,155 @@
+
+\documentclass[]{article}
+
+\usepackage[danish]{babel} 
+\usepackage[utf8]{inputenc}
+
+\usepackage[pdftex]{graphicx}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+{\LARGE Datalogisk Institut \\Københavns Universitet}\\[0.5cm]
+
+\textsc{\Large OOPD - Uge 2}\\[0.5cm]
+
+% Title
+\HRule \\[0.4cm]
+{ \huge \bfseries TicTacToe \\[0.4cm] }
+
+\HRule \\[1.0cm]
+
+% Author and supervisor
+Christian \textsc{Enevoldsen},
+Nicklas W. \textsc{Jacobsen},\\
+Jacob \textsc{Harder},
+Benjamin \textsc{Rotendahl}
+
+\vfill
+
+% Bottom of the page
+{\large \today}
+
+\end{center}
+\end{titlepage}
+
+{\setlength{\parindent}{0 cm}
+
+\textbf{{\huge Overvejelser}}\\\\
+\textbf{\large PrintBoard()}\\
+
+Vi blev enige om følge det matematiske koordinatsystem frem for matricekoordinatsystemet, så (1, 1) lægger nede i venstre hjørne. \\
+
+\textbf{\large oneMoreGame()}\\
+
+Det er god kotume at få brugeren til at spille så meget så muligt, så vi blev enige om at det var en god ide at implementere denne funktionalitet.\\
+
+\textbf{\large piecesOnBoard}\\
+
+Ved at holde styr på, hvor mange brikker der er brugt er vi i stand til rimelig let at bestemme hvornår spilleren skal rykke sin brik fremfor at indsætte en ny. Denne variable gør det også nemmere at udvide brættets størrelse da man så ville kunne sammenligne med et funktionskald i stedet for en konstant.\\
+
+
+\textbf{\large java.awt.Point}\\
+
+Vi har valgt at benytte biblioteksklassen Point til at indkapsle feltdata ved funktioner, da det er mere objektorienteret frem for at benytte arrays eller andre veje.\\
+
+\textbf{\large 1-3 frem for 0-2}\\
+
+Da det er mere naturligt at starte fra 1 for normale brugere, har vi valgt at konvertere koordinaterne under kørsel. Udover det er det også lettere på en bærbar datamat at skrive 1-2-3, i stedet for 0-1-2. (Uden numlock)\\
+
+\textbf{\large Uddata}\\
+
+Happy TicTacToe. May the odds be ever in your favor
+
+. . . \\
+. . . \\
+. . . \\
+
+Place your piece X
+Please provide the coordinates x, y [1 - 3]
+x: 1
+y: 2\\
+. . . \\
+X . . \\
+. . . \\
+
+
+Place your piece O
+Please provide the coordinates x, y [1 - 3]
+x: 3
+y: 2
+
+
+. . . \\
+X . O\\ 
+. . . \\
+
+
+Place your piece X
+Please provide the coordinates x, y [1 - 3]
+x: 2
+y: 2
+
+
+. . . \\
+X X O\\ 
+. . . \\
+
+
+Place your piece O
+Please provide the coordinates x, y [1 - 3]
+x: 1
+y: 1
+
+. . . \\
+X X O \\
+O . . \\
+
+
+Place your piece X
+Please provide the coordinates x, y [1 - 3]
+x: 1
+y: 3
+
+X . . \\
+X X O \\
+O . . \\
+
+Place your piece O
+Please provide the coordinates x, y [1 - 3]
+x: 2
+y: 1
+
+X . . \\
+X X O \\
+O O . \\
+
+Pick a piece to move X:
+Please provide the coordinates x, y [1 - 3]
+x: 1
+y: 2
+
+X . . \\
+X X O \\
+O O . \\
+
+Where do you want to place the piece?
+Please provide the coordinates x, y [1 - 3]
+x: 3
+y: 1
+
+Congratulations. X won this time!
+
+X . . \\
+. X O \\
+O O X \\
+
+Do you want to play again? (Yes/No): n
+Thanks for playing!
+}
+
+
+\end{document}
